@@ -6,7 +6,6 @@ function App() {
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
-    // setError(null);
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
       if (!response.ok) {
@@ -15,32 +14,25 @@ function App() {
 
       const data = await response.json();
 
-      // const loadedUsers = [];
-
-      // for (const key in data) {
-      //   loadedMovies.push({
-      //     id: key ,
-      //     title: data[key].title,
-      //     openingText: data[key].openingText,
-      //     releaseDate: data[key].releaseDate,
-      //   })
-      // }
-
       setUsers(data);
     } catch (error) {
-      // setError(error.message);
       console.log(error)
     }
     setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    fetchUsers()
+    // setTimeOut(fetchUsers(),3000)
+    setIsLoading(true)
+    setTimeout(() => {
+      fetchUsers()
+    },3000)
   },[fetchUsers])
 
   return (
     <div>
       <div>hello</div>
+      {isLoading && <p>Loading...</p>}
       {!isLoading && <Users users={users} />}
     </div>
   );
