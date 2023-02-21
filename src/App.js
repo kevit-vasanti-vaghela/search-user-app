@@ -33,9 +33,7 @@ function App() {
   const searchUserHandler = (searchTerm) => {
     
     let newUsers = users.filter(user => {
-      
       return (user.name.toLowerCase().includes(searchTerm.toLowerCase()))
-      
     })
     setUsers(newUsers)
   }
@@ -45,7 +43,6 @@ function App() {
       <SearchUser users={users} onSearch={searchUserHandler}/>
       {!isLoading && <Users users={users} />}
       {isLoading && <p>Loading...</p>}
-
     </div>
   );
 }
