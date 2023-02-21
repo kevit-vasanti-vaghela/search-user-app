@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import Users from "./components/Users";
 import SearchUser from "./components/SearchUser";
 function App() {
@@ -33,17 +33,21 @@ function App() {
     },1000)
   },[fetchUsers])
 
-  const userSearchHandler = (searchTerm) => {
-    let filteredUsers = users.filter(user => {
-      return user.name.toLowerCase().includes(searchTerm.toLowerCase())
-    })
-    return filteredUsers
-  }
+  
+    let filteredUsers = useMemo(() => {
+      return (
+        users.filter(user => {
+          return user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      })
+      )
+  },[users,searchTerm])
+ 
+  
     
   return (
     <div className="app">
-       <SearchUser onSearch={userSearchHandler} />
-      {!isLoading && <Users users={users}  />}
+       <SearchUser  setSearchTerm={setSearchTerm} />
+      {!isLoading  && <Users users={filteredUsers} />}
       {isLoading && <p>Loading...</p>}
     </div>
   );

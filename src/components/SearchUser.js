@@ -1,13 +1,9 @@
 // import { useState } from "react"
 
-const SearchUser = ({ onSearch }) => {
-    // const [searchTerm, setSearchTerm] = useState('')
-    const searchUserHandler = (e) => {
-        // setSearchTerm(e.target.value)
-        onSearch(e.target.value)
-    }
+const SearchUser = ({ searchTerm, setSearchTerm }) => {
+    
     return <div className="search-user">
-        <input type="text" id="u-search" name="u-search"  onChange={searchUserHandler} placeholder="Search User"/>
+        <input type="text" id="u-search" name="u-search"  onChange={(e) =>setSearchTerm(e.target.value)}  placeholder="Search User"/>
     </div>
 }
 export default SearchUser;
