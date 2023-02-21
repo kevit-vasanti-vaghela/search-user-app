@@ -14,9 +14,9 @@ ul {
 }
 .app {
   width: 600px;
+  height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin: 10px  auto;
   background-color: rgb(66, 69, 71);
