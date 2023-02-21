@@ -32,16 +32,18 @@ ul {
   color: white;
  }
 
- .search-user {
+ /* .search-user {
   margin-bottom: 30px;
   margin-top: 30px;
- }
+ } */
   input {
     height: 2rem;
     text-indent: 5px;
     font-size: 18px;
     border-radius: 10px;
     border-color: black;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
    
    p {

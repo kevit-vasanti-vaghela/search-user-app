@@ -1,9 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import SearchUser from "./components/SearchUser";
 import Users from "./components/Users";
 function App() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+
+
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
@@ -30,22 +32,18 @@ function App() {
     },1000)
   },[fetchUsers])
 
-  const searchUserHandler = (searchTerm) => {
-    
-    let newUsers = users.filter(user => {
-      
-      return (user.name.toLowerCase().includes(searchTerm.toLowerCase()))
-      
+  const filteredData = users.filter(user => {
+      return user.name.toLowerCase().includes(searchTerm.toLowerCase())
     })
-    setUsers(newUsers)
-  }
+    
+
+
 
   return (
     <div className="app">
-      <SearchUser users={users} onSearch={searchUserHandler}/>
-      {!isLoading && <Users users={users} />}
+       <input type="search" id="u-search" name="u-search"  onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} placeholder="Search User"/>
+      {!isLoading && <Users users={filteredData}  />}
       {isLoading && <p>Loading...</p>}
-
     </div>
   );
 }
