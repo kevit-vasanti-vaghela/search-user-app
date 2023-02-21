@@ -5,18 +5,20 @@
 }
 body {
   background-color: #cec8c8;
+  
 }
 ul {
   display: flex;
+  width: 100%;
   flex-direction: column;
   width: 500px;
   margin-bottom: 30px;
 }
 .app {
-  width: 600px;
   display: flex;
+  width: 600px;
+  height: 400px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin: 10px  auto;
   background-color: rgb(66, 69, 71);
@@ -33,6 +35,11 @@ ul {
  }
 
  .search-user {
+  width: 80%;
+  height: 50px;
+  display: absolute;
+  top: 50px;
+  left: 40px;
   margin-bottom: 30px;
   margin-top: 30px;
  }

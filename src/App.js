@@ -5,6 +5,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const [showResult, setShowResult] = useState(true)
 
 
 
@@ -36,9 +37,15 @@ function App() {
   
     let filteredUsers = useMemo(() => {
       return (
-        users.filter(user => {
+          users.filter(user => {
+            // if(searchTerm.length > 0 && !(user.name.toLowerCase().includes(searchTerm.toLowerCase()))){
+            //   setShowResult(false)
+            // }
+            // else {
+            //   setShowResult(true)
+            // }
           return user.name.toLowerCase().includes(searchTerm.toLowerCase())
-      })
+        })
       )
   },[users,searchTerm])
  
@@ -46,9 +53,10 @@ function App() {
     
   return (
     <div className="app">
-       <SearchUser  setSearchTerm={setSearchTerm} />
-      {!isLoading  && <Users users={filteredUsers} />}
+      <SearchUser  setSearchTerm={setSearchTerm} />
+      {!isLoading  && showResult && <Users users={filteredUsers} />}
       {isLoading && <p>Loading...</p>}
+      {!showResult && <p>No Result Found.</p>}
     </div>
   );
 }
