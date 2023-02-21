@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import SearchUser from "./components/SearchUser";
 import Users from "./components/Users";
 function App() {
   const [users, setUsers] = useState([])
@@ -26,14 +27,25 @@ function App() {
     setIsLoading(true)
     setTimeout(() => {
       fetchUsers()
-    },3000)
+    },1000)
   },[fetchUsers])
 
+  const searchUserHandler = (searchTerm) => {
+    
+    let newUsers = users.filter(user => {
+      
+      return (user.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      
+    })
+    setUsers(newUsers)
+  }
+
   return (
-    <div>
-      <div>hello</div>
-      {isLoading && <p>Loading...</p>}
+    <div className="app">
+      <SearchUser users={users} onSearch={searchUserHandler}/>
       {!isLoading && <Users users={users} />}
+      {isLoading && <p>Loading...</p>}
+
     </div>
   );
 }
