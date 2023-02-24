@@ -4,7 +4,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
-  const [showNoResult, setShowNoResult] = useState(false)
+  // const [showNoResult, setShowNoResult] = useState(false)
 
 
 
@@ -47,18 +47,19 @@ const onChangehandler = (e) => {
   setIsLoading(true)
   setTimeout(() => {
     setIsLoading(false)
-  },500)
+  },700)
 }
 
  const filteredData = getFilteredUsers(searchTerm,users)
-  
-
+ console.log(filteredData)
+ let showNoResult = filteredData.length === 0 ? true : false
+ console.log('XXXXX',showNoResult)
   return (
     <div className="app">
        <input type="search" id="u-search" name="u-search"  onChange={onChangehandler} value={searchTerm} placeholder="Search User"/>
-      {!isLoading && <Users users={filteredData}  />}
+      {!isLoading  && <Users users={filteredData}  />}
       {isLoading && <p>Loading...</p>}
-      {showNoResult && <p>No Result Found.</p>}
+      {!isLoading && showNoResult && <p>No Result Found.</p>}
     </div>
   );
 }
